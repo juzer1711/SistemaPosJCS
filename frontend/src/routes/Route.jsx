@@ -29,7 +29,7 @@ function AppRoutes() {
         <Route
           path="/admin"
           element={
-            <PrivateRoute role="ADMINISTRADOR">
+            <PrivateRoute rol="ADMINISTRADOR">
               <AdminDashboard />
             </PrivateRoute>
           }
@@ -38,7 +38,7 @@ function AppRoutes() {
         <Route
           path="/cajero"
           element={
-            <PrivateRoute role="CAJERO">
+            <PrivateRoute rol="CAJERO">
               <CajeroDashboard />
             </PrivateRoute>
           }
@@ -48,7 +48,7 @@ function AppRoutes() {
         <Route
           path="/usuarios"
           element={
-            <PrivateRoute role="ADMINISTRADOR">
+            <PrivateRoute rol="ADMINISTRADOR">
               <UserManagement />
             </PrivateRoute>
           }
