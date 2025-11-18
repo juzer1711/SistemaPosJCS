@@ -26,7 +26,7 @@ public class UserController {
 
 // ✅ 1. Listar solo usuarios ACTIVOS
 @GetMapping
-public List<UserDTO> getAllActiveUsers() {
+public List<UserDTO> getAllActiveUsuarios() {
     return userService.getAllActiveUsuario()
         .stream()
         .map(u -> new UserDTO(
@@ -43,7 +43,7 @@ public List<UserDTO> getAllActiveUsers() {
 }
 
 @GetMapping("/inactivos")
-public List<UserDTO> getInactiveUsers() {
+public List<UserDTO> getInactiveUsuarios() {
     return userService.getAllUsuarios()
         .stream()
         .filter(u -> u.getEstado() == false)
@@ -64,13 +64,13 @@ public List<UserDTO> getInactiveUsers() {
 
     //  2. Obtener un usuario por ID
     @GetMapping("/{id}")
-    public Usuario getUserById(@PathVariable Long id) {
+    public Usuario getUsuarioById(@PathVariable Long id) {
         return userService.getUsuarioById(id);
     }
 
     //  3. Crear usuario
     @PostMapping
-    public ResponseEntity<Usuario> createUser(@Valid @RequestBody Usuario user) {
+    public ResponseEntity<Usuario> createUsuario(@Valid @RequestBody Usuario user) {
         return ResponseEntity.ok(userService.createUsuario(user));
     }
 
