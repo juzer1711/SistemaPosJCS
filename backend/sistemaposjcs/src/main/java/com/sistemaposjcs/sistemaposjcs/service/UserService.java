@@ -20,18 +20,23 @@ public class UserService {
     }
 
     // ✅ Listar todos los usuarios
-    public List<Usuario> getAllUsers() {
+    public List<Usuario> getAllUsuarios() {
         return userRepository.findAll();
     }
 
     // ✅ Obtener usuario por ID
-    public Usuario getUserById(Long id) {
+    public Usuario getUsuarioById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
 
+    public List<Usuario> getAllActiveUsuario() {
+    return userRepository.findByEstadoTrue();
+    }
+
+
     // ✅ Crear usuario
-    public Usuario createUser(Usuario usuario) {
+    public Usuario createUsuario(Usuario usuario) {
 
         // 🔥 Reemplazar rol recibido con el rol REAL de la BD
         if (usuario.getRol() != null && usuario.getRol().getId() != null) {
@@ -47,8 +52,8 @@ public class UserService {
 
 
     // ✅ Actualizar usuario
-    public Usuario updateUser(Long id, Usuario userDetails) {
-        Usuario usuario = getUserById(id);
+    public Usuario updateUsuario(Long id, Usuario userDetails) {
+        Usuario usuario = getUsuarioById(id);
 
         usuario.setUsername(userDetails.getUsername());
         usuario.setNombre(userDetails.getNombre());
@@ -72,12 +77,7 @@ public class UserService {
         return userRepository.save(usuario);
     }
 
-    public List<Usuario> getAllActiveUsers() {
-    return userRepository.findByEstadoTrue();
-    }
-
-
-    public void deleteUser(Long id) {
+    public void desactivarUsuario(Long id) {
         Usuario u = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
@@ -93,5 +93,4 @@ public class UserService {
     return userRepository.save(u);
 }
 
-    
 }

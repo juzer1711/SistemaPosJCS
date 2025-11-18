@@ -24,14 +24,10 @@ public class UserController {
 
 
 
-<<<<<<< HEAD
 // ✅ 1. Listar solo usuarios ACTIVOS
-=======
-    //  1. Listar todos los usuarios
->>>>>>> 823b0e2e39cc734c83ee8c9ef05b86df6454cd6b
 @GetMapping
 public List<UserDTO> getAllActiveUsers() {
-    return userService.getAllActiveUsers()
+    return userService.getAllActiveUsuario()
         .stream()
         .map(u -> new UserDTO(
             u.getIdUsuario(),
@@ -48,7 +44,7 @@ public List<UserDTO> getAllActiveUsers() {
 
 @GetMapping("/inactivos")
 public List<UserDTO> getInactiveUsers() {
-    return userService.getAllUsers()
+    return userService.getAllUsuarios()
         .stream()
         .filter(u -> u.getEstado() == false)
         .map(u -> new UserDTO(
@@ -69,25 +65,25 @@ public List<UserDTO> getInactiveUsers() {
     //  2. Obtener un usuario por ID
     @GetMapping("/{id}")
     public Usuario getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
+        return userService.getUsuarioById(id);
     }
 
     //  3. Crear usuario
     @PostMapping
     public ResponseEntity<Usuario> createUser(@Valid @RequestBody Usuario user) {
-        return ResponseEntity.ok(userService.createUser(user));
+        return ResponseEntity.ok(userService.createUsuario(user));
     }
 
     //  4. Actualizar usuario
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> updateUser(@PathVariable Long id, @Validated(Usuario.OnUpdate.class) @RequestBody Usuario user) {
-        return ResponseEntity.ok(userService.updateUser(id, user));
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @Validated(Usuario.OnUpdate.class) @RequestBody Usuario user) {
+        return ResponseEntity.ok(userService.updateUsuario(id, user));
     }
 
     //  5. Eliminar usuario
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    public ResponseEntity<Void> desactivarUsuario(@PathVariable Long id) {
+        userService.desactivarUsuario(id);
         return ResponseEntity.noContent().build();
     }
 
