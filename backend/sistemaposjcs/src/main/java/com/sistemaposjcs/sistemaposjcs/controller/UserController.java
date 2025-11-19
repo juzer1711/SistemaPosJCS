@@ -24,7 +24,11 @@ public class UserController {
 
 
 
+<<<<<<< HEAD
 // ✅ 1. Listar solo usuarios ACTIVOS
+=======
+    //  1. Listar todos los usuarios
+>>>>>>> origin/feature/clientes
 @GetMapping
 public List<UserDTO> getAllActiveUsers() {
     return userService.getAllActiveUsers()
@@ -94,3 +98,4 @@ public List<UserDTO> getInactiveUsers() {
 
 
 }
+
