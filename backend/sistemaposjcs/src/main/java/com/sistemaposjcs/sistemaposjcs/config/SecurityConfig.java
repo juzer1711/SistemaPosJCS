@@ -18,14 +18,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
-<<<<<<< HEAD
-            .cors(cors -> {})     // 👈 ACTIVA CORS USANDO TU CONFIG DE ABAJO
-=======
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
->>>>>>> origin/feature/clientes
-            .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll()
-            )
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
             .formLogin(form -> form.disable());
 
         return http.build();
@@ -39,24 +33,13 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-<<<<<<< HEAD
-        config.setAllowedOriginPatterns(List.of("http://localhost:3000")); // 👈 FRONTEND
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);  // 👈 PERMITE TOKEN / AUTH
-=======
-
-        // 🔥 IMPORTANTE: con credentials NO puedes usar "*"
-        config.setAllowedOrigins(List.of("http://localhost:3000"));
-
+        config.setAllowedOriginPatterns(List.of("http://localhost:3000"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
->>>>>>> origin/feature/clientes
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
     }
 }
-
